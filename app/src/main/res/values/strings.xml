@@ -3,8 +3,13 @@
     <string name="nanodegree_apps">My Nanodegree Apps!</string>
     <string name="popular_movies_button">Popular Movies</string>
     <string name="stock_hawk_button">Stock Hawk</string>
+    <string name="stock_hawk_button_toast">This button will launch Stock Hawk App!</string>
     <string name="buildit_bigger_button">Build It Bigger</string>
+    <string name="buildit_bigger_button_toast">This button will launch Build It Bigger App!</string>
     <string name="make_your_app_material_button">Make Your App Material</string>
+    <string name="make_your_app_material_button_toast">This button will launch Make Your App Material App!</string>
     <string name="go_ubiquitous_button">Go Ubiquitous</string>
+    <string name="go_ubiquitous_button_toast">This button will launch Go Ubiquitous App!</string>
     <string name="capstone_button">Capstone</string>
+    <string name="capstone_button_toast">This button will launch Capstone App!</string>
 </resources>

@@ -46,19 +46,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 				showToast("This button will launch Popular Movies App!");
 				break;
 			case R.id.stockHawkButton:
-				showToast("This button will launch Stock Hawk App!");
+				showToast(getResources().getString(R.string.stock_hawk_button_toast));
 				break;
 			case R.id.buildItBiggerButton:
-				showToast("This button will launch Build It Bigger App!");
+				showToast(getResources().getString(R.string.buildit_bigger_button_toast));
 				break;
 			case R.id.makeYourAppMaterialButton:
-				showToast("This button will launch Make Your App Material App!");
+				showToast(getResources().getString(R.string.make_your_app_material_button_toast));
 				break;
 			case R.id.goUbiquitousButton:
-				showToast("This button will launch Go Ubiquitous App!");
+				showToast(getResources().getString(R.string.go_ubiquitous_button_toast));
 				break;
 			case R.id.capstoneButton:
-				showToast("This button will launch Capstone App!");
+				showToast(getResources().getString(R.string.capstone_button_toast));
 				break;
 			default:
 				break;
