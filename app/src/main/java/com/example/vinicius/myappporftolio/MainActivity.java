@@ -1,10 +1,14 @@
 package com.example.vinicius.myappporftolio;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.example.vinicius.myappporftolio.popularmovies.PopularMoviesActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
 {
@@ -15,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	private Button goUbiquitousButton;
 	private Button capstoneButton;
 	private Toast toast;
+	private Toolbar toolbar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -28,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		makeYourAppMaterialButton = (Button) findViewById(R.id.makeYourAppMaterialButton);
 		goUbiquitousButton = (Button) findViewById(R.id.goUbiquitousButton);
 		capstoneButton = (Button) findViewById(R.id.capstoneButton);
+		toolbar = (Toolbar) findViewById(R.id.toolbar);
 
 		popularMoviesButton.setOnClickListener(this);
 		stockHawkButton.setOnClickListener(this);
@@ -35,6 +41,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		makeYourAppMaterialButton.setOnClickListener(this);
 		goUbiquitousButton.setOnClickListener(this);
 		capstoneButton.setOnClickListener(this);
+
+		setSupportActionBar(toolbar);
+
+		getSupportActionBar().setDisplayShowTitleEnabled(false);
 	}
 
 	@Override
@@ -43,7 +53,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		switch(view.getId())
 		{
 			case R.id.popularMoviesButton:
-				showToast("This button will launch Popular Movies App!");
+				Intent intent = new Intent(this, PopularMoviesActivity.class);
+				startActivity(intent);
 				break;
 			case R.id.stockHawkButton:
 				showToast(getResources().getString(R.string.stock_hawk_button_toast));
