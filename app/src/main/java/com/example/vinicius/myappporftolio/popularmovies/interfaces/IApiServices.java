@@ -26,4 +26,8 @@ public interface IApiServices<T>
 	void GetMovieVideos(Response.Listener<T> successResponseRequestListener,
 								 Response.ErrorListener errorResponseRequestListener, Class<T> clazz, Context context,
 								 String requestTag, long id);
+
+	void GetMovieReviews(Response.Listener<T> successResponseRequestListener,
+							  Response.ErrorListener errorResponseRequestListener, Class<T> clazz, Context context,
+							  String requestTag, long id);
 }

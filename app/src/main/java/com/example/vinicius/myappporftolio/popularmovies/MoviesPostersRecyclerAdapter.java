@@ -7,8 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
 import com.example.vinicius.myappporftolio.R;
 import com.example.vinicius.myappporftolio.popularmovies.DTO.MovieDTO;
 import com.squareup.picasso.Picasso;
@@ -52,7 +50,7 @@ public class MoviesPostersRecyclerAdapter extends RecyclerView.Adapter<MoviesPos
 	{
 		MovieDTO movieDTO = moviesList.get(position);
 
-		/*TODO: porque no emulador genymotion api 16 */
+		/*TODO: porque no emulador genymotion api 16 a imagem não fica boa? */
 		Picasso.with(mContext).load(movieDTO.getPoster()).placeholder(R.drawable.image_placeholder)
 				  .into(customViewHolder.thumbnailImage);
 	}

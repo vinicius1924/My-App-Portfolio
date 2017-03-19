@@ -30,64 +30,78 @@
         android:layout_height="@dimen/toolbar_shadow_height"
         android:background="@drawable/shadow"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/nanodegree_apps"
-        android:layout_gravity="center_horizontal"
-        android:fontFamily="sans-serif"
-        android:textSize="@dimen/text_view_text_size"
-        android:textColor="@android:color/black"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"/>
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/activity_horizontal_margin"
-        android:orientation="vertical">
+        android:scrollbars="vertical">
 
-        <Button
-            android:id="@+id/popularMoviesButton"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/popular_movies_button"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/stockHawkButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/stock_hawk_button"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nanodegree_apps"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="sans-serif"
+                android:textSize="@dimen/text_view_text_size"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"/>
 
-        <Button
-            android:id="@+id/buildItBiggerButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/buildit_bigger_button"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
 
-        <Button
-            android:id="@+id/makeYourAppMaterialButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/make_your_app_material_button"/>
+                <Button
+                    android:id="@+id/popularMoviesButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/popular_movies_button"/>
 
-        <Button
-            android:id="@+id/goUbiquitousButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/go_ubiquitous_button"/>
+                <Button
+                    android:id="@+id/stockHawkButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/stock_hawk_button"/>
 
-        <Button
-            android:id="@+id/capstoneButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/capstone_button"/>
+                <Button
+                    android:id="@+id/buildItBiggerButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/buildit_bigger_button"/>
 
-    </LinearLayout>
+                <Button
+                    android:id="@+id/makeYourAppMaterialButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/make_your_app_material_button"/>
+
+                <Button
+                    android:id="@+id/goUbiquitousButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/go_ubiquitous_button"/>
+
+                <Button
+                    android:id="@+id/capstoneButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/capstone_button"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

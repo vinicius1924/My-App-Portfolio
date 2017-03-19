@@ -1,6 +1,7 @@
 package com.example.vinicius.myappporftolio.popularmovies;
 
 import com.example.vinicius.myappporftolio.popularmovies.DTO.MovieDTO;
+import com.example.vinicius.myappporftolio.popularmovies.DTO.MovieVideoDTO;
 
 import java.util.List;
 
@@ -10,9 +11,9 @@ import java.util.List;
 
 public class GetVideosResponse
 {
-	private List<MovieDTO> results;
+	private List<MovieVideoDTO> results;
 
-	public List<MovieDTO> getData()
+	public List<MovieVideoDTO> getData()
 	{
 		return results;
 	}

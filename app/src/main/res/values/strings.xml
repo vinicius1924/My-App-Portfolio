@@ -21,4 +21,12 @@
     <string name="second_pref_list_entry">Highest Rated</string>
     <string name="prefDefaultValue">@string/first_pref_list_entry</string>
     <string name="settings_menu">Settings</string>
+    <string name="movie_detail">Movie Detail</string>
+    <string name="parcelable_movie_intent_extra">movie</string>
+    <string name="movie_vote_average">%1$s/10</string>
+    <string name="trailers_text_view">Trailers</string>
+    <string name="reviews_text_view">User Reviews</string>
+    <string name="trailer_text_view">Trailer %1$s</string>
+    <string name="play_video">playVideo%1$s</string>
+    <string name="chooser_title">Open With</string>
 </resources>

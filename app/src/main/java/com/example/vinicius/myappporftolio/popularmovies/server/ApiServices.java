@@ -89,5 +89,21 @@ public class ApiServices<T> implements IApiServices<T>
 		RequestQueueSingleton.getInstance(context).addToRequestQueue(myReq);
 	}
 
+	@Override
+	public void GetMovieReviews(Response.Listener<T> successResponseRequestListener, Response.ErrorListener errorResponseRequestListener, Class<T> clazz, Context context, String requestTag, long id)
+	{
+		GsonRequest<T> myReq = new GsonRequest<T>(Request.Method.GET, "https://api.themoviedb.org/3/movie/" +
+				  String.valueOf(id) + "/reviews?api_key=" + context.getResources().getString(R.string.movie_db_api_key),
+				  clazz, null, null, null, successResponseRequestListener, errorResponseRequestListener);
+
+		int socketTimeout = 10000;
+		RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+				  DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+		myReq.setRetryPolicy(policy);
+		myReq.setTag(requestTag);
+
+		RequestQueueSingleton.getInstance(context).addToRequestQueue(myReq);
+	}
+
 
 }

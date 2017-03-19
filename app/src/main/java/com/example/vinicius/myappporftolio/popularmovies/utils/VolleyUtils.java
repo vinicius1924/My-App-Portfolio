@@ -57,4 +57,41 @@ public final class VolleyUtils
 
 		return -1;
 	}
+
+	public static boolean isPendingToRequest(Context context, String tag)
+	{
+		RequestQueue mVolleyRequestQueue = RequestQueueSingleton.getInstance(context.getApplicationContext()).getRequestQueue();
+		Field mCurrentRequests = null;
+
+		try
+		{
+			mCurrentRequests = RequestQueue.class.getDeclaredField("mCurrentRequests");
+
+			mCurrentRequests.setAccessible(true);
+
+			Set<Request> requestsQueue = (Set<Request>) mCurrentRequests.get(mVolleyRequestQueue);
+
+			for (final Request<?> request : requestsQueue )
+			{
+				if(request.getTag().equals(tag))
+				{
+					return true;
+				}
+			}
+		}
+		catch(NoSuchFieldException e)
+		{
+			Log.e(VOLLEYUTILSTAG, e.toString());
+		}
+		catch(IllegalAccessException e)
+		{
+			Log.e(VOLLEYUTILSTAG, e.toString());
+		}
+		finally
+		{
+			mCurrentRequests.setAccessible(false);
+		}
+
+		return false;
+	}
 }

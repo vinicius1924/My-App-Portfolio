@@ -1,5 +1,6 @@
 package com.example.vinicius.myappporftolio.popularmovies;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -17,9 +18,7 @@ import com.example.vinicius.myappporftolio.R;
 import com.example.vinicius.myappporftolio.popularmovies.DTO.MovieDTO;
 import com.example.vinicius.myappporftolio.popularmovies.server.ApiServices;
 import com.example.vinicius.myappporftolio.popularmovies.utils.VolleyUtils;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -110,7 +109,7 @@ public class PopularMoviesActivity extends AppCompatActivity implements MoviesPo
 	{
 		super.onStop();
 
-		Log.d(POPULARMOVIESACTIVITYTAG, POPULARMOVIESACTIVITYTAG + " onStop()");
+		//Log.d(POPULARMOVIESACTIVITYTAG, POPULARMOVIESACTIVITYTAG + " onStop()");
 
 		try
 		{
@@ -164,7 +163,11 @@ public class PopularMoviesActivity extends AppCompatActivity implements MoviesPo
 	@Override
 	public void onListItemClick(int clickedItemIndex)
 	{
-		MovieDTO movieDTO = moviesList.get(clickedItemIndex);
+		MovieDTO movieDTO = moviesList.get(clickedItemIndex).clone();
+
+		Intent i = new Intent(this, MovieActivity.class);
+		i.putExtra(getResources().getString(R.string.parcelable_movie_intent_extra), movieDTO);
+		startActivity(i);
 	}
 
 	public void loadPopularMoviesFromApi()
@@ -221,57 +224,32 @@ public class PopularMoviesActivity extends AppCompatActivity implements MoviesPo
 				  GetMoviesResponse.class, getApplicationContext(), POPULARMOVIESACTIVITYTAG);
 	}
 
-	public void loadMovieDetails(long id)
-	{
-		final Response.Listener<MovieDTO> successResponseRequestListener = new Response.Listener<MovieDTO>()
-		{
-			@Override
-			public void onResponse(MovieDTO response)
-			{
-				response.hashCode();
-			}
-		};
-
-		final Response.ErrorListener errorResponseRequestListener = new Response.ErrorListener()
-		{
-			@Override
-			public void onErrorResponse(VolleyError error)
-			{
-				Log.e(POPULARMOVIESACTIVITYTAG, error.getLocalizedMessage());
-			}
-		};
-
-		Type type = new TypeToken<MovieDTO>(){}.getType();
-
-		ApiServices<MovieDTO> apiServices = new ApiServices<>();
-		apiServices.GetMovieDetails(successResponseRequestListener, errorResponseRequestListener,
-				  type, getApplicationContext(), POPULARMOVIESACTIVITYTAG, id);
-	}
-
-	public void loadMovieVideos(long id)
-	{
-		final Response.Listener<GetVideosResponse> successResponseRequestListener = new Response.Listener<GetVideosResponse>()
-		{
-			@Override
-			public void onResponse(GetVideosResponse response)
-			{
-				response.getData().get(0).getKey();
-			}
-		};
-
-		final Response.ErrorListener errorResponseRequestListener = new Response.ErrorListener()
-		{
-			@Override
-			public void onErrorResponse(VolleyError error)
-			{
-				Log.e(POPULARMOVIESACTIVITYTAG, error.getLocalizedMessage());
-			}
-		};
-
-		ApiServices<GetVideosResponse> apiServices = new ApiServices<>();
-		apiServices.GetMovieVideos(successResponseRequestListener, errorResponseRequestListener,
-				  GetVideosResponse.class, getApplicationContext(), POPULARMOVIESACTIVITYTAG, id);
-	}
+//	public void loadMovieDetails(long id)
+//	{
+//		final Response.Listener<MovieDTO> successResponseRequestListener = new Response.Listener<MovieDTO>()
+//		{
+//			@Override
+//			public void onResponse(MovieDTO response)
+//			{
+//				response.hashCode();
+//			}
+//		};
+//
+//		final Response.ErrorListener errorResponseRequestListener = new Response.ErrorListener()
+//		{
+//			@Override
+//			public void onErrorResponse(VolleyError error)
+//			{
+//				Log.e(POPULARMOVIESACTIVITYTAG, error.getLocalizedMessage());
+//			}
+//		};
+//
+//		Type type = new TypeToken<MovieDTO>(){}.getType();
+//
+//		ApiServices<MovieDTO> apiServices = new ApiServices<>();
+//		apiServices.GetMovieDetails(successResponseRequestListener, errorResponseRequestListener,
+//				  type, getApplicationContext(), POPULARMOVIESACTIVITYTAG, id);
+//	}
 
 	@Override
 	public void onPreferenceChangedEvent(String preference)

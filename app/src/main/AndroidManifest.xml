@@ -18,13 +18,24 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".popularmovies.PopularMoviesActivity"
+        <activity
+            android:name=".popularmovies.PopularMoviesActivity"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity">
             </meta-data>
         </activity>
+        <activity android:name=".popularmovies.MovieActivity"
+            android:parentActivityName=".popularmovies.PopularMoviesActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".popularmovies.PopularMoviesActivity">
+            </meta-data>
+        </activity>
+        <provider
+            android:authorities="com.example.vinicius.myappportfolio"
+            android:name=".popularmovies.database.MovieProvider" />
     </application>
 
 </manifest>
