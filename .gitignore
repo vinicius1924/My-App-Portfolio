@@ -2,6 +2,7 @@
 /build
 /captures
 app/build
+volley/build
 
 # built application files
 *.apk

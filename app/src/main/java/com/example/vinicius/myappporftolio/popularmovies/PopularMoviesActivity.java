@@ -17,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.example.vinicius.myappporftolio.R;
 import com.example.vinicius.myappporftolio.popularmovies.DTO.MovieDTO;
 import com.example.vinicius.myappporftolio.popularmovies.server.ApiServices;
+import com.example.vinicius.myappporftolio.popularmovies.server.GetMoviesResponse;
 import com.example.vinicius.myappporftolio.popularmovies.utils.VolleyUtils;
 
 import java.util.ArrayList;
@@ -49,32 +50,6 @@ public class PopularMoviesActivity extends AppCompatActivity implements MoviesPo
 		moviesPostersRecyclerView.setHasFixedSize(true);
 
 		moviesPostersRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-
-//		MovieDTO movie1 = new MovieDTO();
-//		movie1.setPoster_path("http://image.tmdb.org/t/p/w185//9O7gLzmreU0nGkIB6K3BsJbzvNv.jpg");
-//		MovieDTO movie2 = new MovieDTO();
-//		movie2.setPoster_path("http://image.tmdb.org/t/p/w185//xq1Ugd62d23K2knRUx6xxuALTZB.jpg");
-//		MovieDTO movie3 = new MovieDTO();
-//		movie3.setPoster_path("http://image.tmdb.org/t/p/w185//d4KNaTrltq6bpkFS01pYtyXa09m.jpg");
-//		MovieDTO movie4 = new MovieDTO();
-//		movie4.setPoster_path("http://image.tmdb.org/t/p/w185//lIv1QinFqz4dlp5U4lQ6HaiskOZ.jpg");
-//		MovieDTO movie5 = new MovieDTO();
-//		movie5.setPoster_path("http://image.tmdb.org/t/p/w185//48A2gbhkXJY5WIKFe4IvNUCl665.jpg");
-//		MovieDTO movie6 = new MovieDTO();
-//		movie6.setPoster_path("http://image.tmdb.org/t/p/w185//99EyyBq5dXEvY37jF7EyERhQcFe.jpg");
-//		MovieDTO movie7 = new MovieDTO();
-//		movie7.setPoster_path("http://image.tmdb.org/t/p/w185//jLRllZsubY8UWpeMyDLVXdRyEWi.jpg");
-//		MovieDTO movie8 = new MovieDTO();
-//		movie8.setPoster_path("http://image.tmdb.org/t/p/w185//yRXTVpDRBA3983C3HjoY0SO4dV6.jpg");
-//
-//		moviesList.add(movie1);
-//		moviesList.add(movie2);
-//		moviesList.add(movie3);
-//		moviesList.add(movie4);
-//		moviesList.add(movie5);
-//		moviesList.add(movie6);
-//		moviesList.add(movie7);
-//		moviesList.add(movie8);
 
 		moviesPostersRecyclerAdapter = new MoviesPostersRecyclerAdapter(this.getApplicationContext(), moviesList, this);
 

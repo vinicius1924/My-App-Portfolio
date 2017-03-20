@@ -1,7 +1,6 @@
 package com.example.vinicius.myappporftolio.popularmovies;
 
 import android.content.ContentResolver;
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -22,12 +21,13 @@ import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.example.vinicius.myappporftolio.MainActivity;
 import com.example.vinicius.myappporftolio.R;
 import com.example.vinicius.myappporftolio.popularmovies.DTO.MovieDTO;
 import com.example.vinicius.myappporftolio.popularmovies.DTO.MovieVideoDTO;
 import com.example.vinicius.myappporftolio.popularmovies.database.MovieContract;
 import com.example.vinicius.myappporftolio.popularmovies.server.ApiServices;
+import com.example.vinicius.myappporftolio.popularmovies.server.GetReviewsResponse;
+import com.example.vinicius.myappporftolio.popularmovies.server.GetVideosResponse;
 import com.example.vinicius.myappporftolio.popularmovies.utils.VolleyUtils;
 import com.squareup.picasso.Picasso;
 

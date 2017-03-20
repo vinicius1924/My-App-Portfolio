@@ -19,6 +19,7 @@
             android:layout_height="?attr/actionBarSize"
             android:minHeight="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            android:elevation="@dimen/toolbar_shadow_height"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:layout_scrollFlags="scroll|enterAlways">
@@ -92,6 +93,13 @@
                         android:text="@string/movie_vote_average"
                         android:textColor="@color/secondary_text_color_light"/>
 
+                    <ImageButton
+                        android:id="@+id/favoriteButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/favorite_button"
+                        android:layout_marginTop="@dimen/activity_horizontal_margin"/>
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -104,26 +112,86 @@
                 tools:text="dfjdskjfhdskjfhsdkjfhskjfhkjsdf"
                 android:textColor="@color/secondary_text_color_light"/>
 
-            <View
+            <LinearLayout
+                android:id="@+id/linearLayoutTrailers"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/trailer_divider_height"
-                android:background="@color/divider_color_light"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/trailer_divider_height"
+                    android:background="@color/divider_color_light"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"/>
 
-            <TextView
-                style="@style/Base.TextAppearance.AppCompat.Subhead"
+                <TextView
+                    style="@style/Base.TextAppearance.AppCompat.Subhead"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/trailers_text_view"
+                    android:textColor="@color/primary_text_color_light"
+                    android:layout_marginTop="@dimen/toolbar_shadow_height"/>
+
+                <ProgressBar
+                    android:id="@+id/progressBarTrailers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminateDrawable="@drawable/progressbar_custom"
+                    android:layout_gravity="center_horizontal"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayoutReviews"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/trailers_text_view"
-                android:textColor="@color/primary_text_color_light"
-                android:layout_marginTop="@dimen/toolbar_shadow_height"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <ProgressBar
-                android:id="@+id/progressBarTrailers"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:indeterminateDrawable="@drawable/progressbar_custom"
-                android:layout_gravity="center_horizontal"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/trailer_divider_height"
+                    android:background="@color/divider_color_light"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"/>
+
+                <TextView
+                    style="@style/Base.TextAppearance.AppCompat.Subhead"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/reviews_text_view"
+                    android:textColor="@color/primary_text_color_light"
+                    android:layout_marginTop="@dimen/toolbar_shadow_height"/>
+
+                <!--<LinearLayout-->
+                <!--android:id="@+id/linearLayoutUserReview"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="vertical"-->
+                <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
+                <!--android:paddingTop="@dimen/activity_horizontal_margin">-->
+                <!---->
+                <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textColor="@color/primary_text_color_light"-->
+                <!--tools:text="Fulano"/>-->
+
+                <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="@dimen/trailer_divider_height"-->
+                <!--android:layout_marginBottom="@dimen/toolbar_shadow_height"-->
+                <!--android:textColor="@color/secondary_text_color_light"-->
+                <!--tools:text="This is my review\njdsjfhdjsfhdsj\nlaskdjaskljds"/>-->
+
+                <!--</LinearLayout>-->
+
+                <ProgressBar
+                    android:id="@+id/progressBarReviews"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminateDrawable="@drawable/progressbar_custom"
+                    android:layout_gravity="center_horizontal"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 

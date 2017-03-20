@@ -29,4 +29,6 @@
     <string name="trailer_text_view">Trailer %1$s</string>
     <string name="play_video">playVideo%1$s</string>
     <string name="chooser_title">Open With</string>
+    <string name="favorites">Favorites</string>
+    <string name="no_favorites_text">You don\'t have favorites</string>
 </resources>

@@ -26,16 +26,21 @@
                 android:value=".MainActivity">
             </meta-data>
         </activity>
-        <activity android:name=".popularmovies.MovieActivity"
+        <activity
+            android:name=".popularmovies.MovieActivity"
             android:parentActivityName=".popularmovies.PopularMoviesActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".popularmovies.PopularMoviesActivity">
             </meta-data>
         </activity>
+
         <provider
-            android:authorities="com.example.vinicius.myappportfolio"
-            android:name=".popularmovies.database.MovieProvider" />
+            android:name=".popularmovies.database.MovieProvider"
+            android:authorities="com.example.vinicius.myappportfolio"/>
+
+        <activity android:name=".popularmovies.FavoritesActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -7,4 +7,9 @@
         android:entries="@array/prefListEntries"
         android:entryValues="@array/prefListEntries"
         android:defaultValue="@string/prefDefaultValue"/>
+
+    <Preference android:title="Favorites" >
+        <intent android:targetPackage="com.example.vinicius.myappporftolio"
+                android:targetClass="com.example.vinicius.myappporftolio.popularmovies.FavoritesActivity"/>
+    </Preference>
 </PreferenceScreen>
