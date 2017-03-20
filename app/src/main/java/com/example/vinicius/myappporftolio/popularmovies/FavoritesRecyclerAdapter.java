@@ -64,9 +64,6 @@ public class FavoritesRecyclerAdapter extends RecyclerView.Adapter<FavoritesRecy
 		@Override
 		public void onClick(View view)
 		{
-			//int position = getAdapterPosition();
-
-			//mOnClickListener.onListItemClick(position);
 		}
 	}
 }

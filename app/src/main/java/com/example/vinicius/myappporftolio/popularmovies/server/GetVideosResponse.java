@@ -1,6 +1,5 @@
 package com.example.vinicius.myappporftolio.popularmovies.server;
 
-import com.example.vinicius.myappporftolio.popularmovies.DTO.MovieDTO;
 import com.example.vinicius.myappporftolio.popularmovies.DTO.MovieVideoDTO;
 
 import java.util.List;

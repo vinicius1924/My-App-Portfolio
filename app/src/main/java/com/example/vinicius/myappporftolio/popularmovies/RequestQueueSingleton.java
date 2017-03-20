@@ -1,12 +1,9 @@
 package com.example.vinicius.myappporftolio.popularmovies;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.support.v4.util.LruCache;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
 /*
@@ -82,14 +79,5 @@ public class RequestQueueSingleton
 //   public ImageLoader getImageLoader()
 //   {
 //      return imageloader;
-//   }
-
-//   public void cancelPendingRequests(Object tag)
-//   {
-//      if(requestQueue != null)
-//      {
-//         /* Cancela todas as requisições que foram postas na fila com uma determinada tag */
-//         requestQueue.cancelAll(tag);
-//      }
 //   }
 }

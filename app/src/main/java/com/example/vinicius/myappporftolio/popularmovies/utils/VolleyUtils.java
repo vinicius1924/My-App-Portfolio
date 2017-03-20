@@ -10,10 +10,6 @@ import com.example.vinicius.myappporftolio.popularmovies.RequestQueueSingleton;
 import java.lang.reflect.Field;
 import java.util.Set;
 
-/**
- * Classe final não pode ser extendida
- */
-
 public final class VolleyUtils
 {
 	private static final String VOLLEYUTILSTAG = "VolleyUtils";

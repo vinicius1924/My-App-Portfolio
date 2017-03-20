@@ -8,9 +8,12 @@ import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -18,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -54,6 +58,7 @@ public class MovieActivity extends AppCompatActivity implements View.OnClickList
 	private LinearLayout linearLayoutTrailers;
 	private LinearLayout linearLayoutReviews;
 	private List<String> youtubeTrailers = new ArrayList<String>();
+	private ShareActionProvider mShareActionProvider;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -164,6 +169,45 @@ public class MovieActivity extends AppCompatActivity implements View.OnClickList
 		{
 			Log.e(MOVIEACTIVITYTAG, e.toString());
 		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
+		getMenuInflater().inflate(R.menu.share_trailer, menu);
+
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		switch(item.getItemId())
+		{
+			case R.id.menu_item_share:
+				if(!youtubeTrailers.isEmpty())
+				{
+					Intent shareIntent = new Intent(Intent.ACTION_SEND);
+					shareIntent.setType("text/plain");
+					shareIntent.putExtra(Intent.EXTRA_TEXT, youtubeTrailers.get(0));
+					String title = getResources().getString(R.string.share_trailer_title);
+
+					Intent chooser = Intent.createChooser(shareIntent, title);
+
+					if(shareIntent.resolveActivity(getPackageManager()) != null)
+					{
+						startActivity(chooser);
+					}
+				}
+				else
+				{
+					Toast.makeText(this, getResources().getString(R.string.no_trailer_share), Toast.LENGTH_SHORT);
+				}
+
+				break;
+		}
+
+		return super.onOptionsItemSelected(item);
 	}
 
 	public void loadMovieTrailers(long id)

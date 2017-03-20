@@ -84,8 +84,6 @@ public class PopularMoviesActivity extends AppCompatActivity implements MoviesPo
 	{
 		super.onStop();
 
-		//Log.d(POPULARMOVIESACTIVITYTAG, POPULARMOVIESACTIVITYTAG + " onStop()");
-
 		try
 		{
 			int numberOfRequests = VolleyUtils.getNumberOfRequestsInQueue(getApplicationContext());

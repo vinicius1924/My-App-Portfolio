@@ -224,7 +224,10 @@ public class MovieProvider extends ContentProvider
 
 		UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
 		matcher.addURI(content, MovieContract.PATH_MOVIE, MOVIE);
-		/* O /# é usado como placeholder para um valor numérico. Neste caso usaríamos */
+		/*
+		 * O /# é usado como placeholder para um valor numérico. Neste caso usaríamos
+		 *	content://com.example.vinicius.myappportfolio/movie/1 para o filme com id 1
+		 */
 		matcher.addURI(content, MovieContract.PATH_MOVIE + "/#", MOVIE_ID);
 
 		return matcher;
