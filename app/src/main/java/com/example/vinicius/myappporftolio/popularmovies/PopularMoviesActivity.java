@@ -3,6 +3,8 @@ package com.example.vinicius.myappporftolio.popularmovies;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -11,6 +13,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -18,6 +22,7 @@ import com.example.vinicius.myappporftolio.R;
 import com.example.vinicius.myappporftolio.popularmovies.DTO.MovieDTO;
 import com.example.vinicius.myappporftolio.popularmovies.server.ApiServices;
 import com.example.vinicius.myappporftolio.popularmovies.server.GetMoviesResponse;
+import com.example.vinicius.myappporftolio.popularmovies.utils.NetworkUtils;
 import com.example.vinicius.myappporftolio.popularmovies.utils.VolleyUtils;
 
 import java.util.ArrayList;
@@ -27,10 +32,12 @@ public class PopularMoviesActivity extends AppCompatActivity implements MoviesPo
 {
 	private android.support.v7.widget.RecyclerView moviesPostersRecyclerView;
 	private MoviesPostersRecyclerAdapter moviesPostersRecyclerAdapter;
+	private CoordinatorLayout coordinatorLayout;
 	private List<MovieDTO> moviesList = new ArrayList<MovieDTO>();
 	private final String POPULARMOVIESACTIVITYTAG = getClass().getSimpleName();
 	private boolean requestsCanceled = false;
 	private Toolbar toolbar;
+	private Snackbar snackbar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -40,6 +47,7 @@ public class PopularMoviesActivity extends AppCompatActivity implements MoviesPo
 
 		moviesPostersRecyclerView = (RecyclerView) findViewById(R.id.moviesPostersRecyclerView);
 		toolbar = (Toolbar) findViewById(R.id.toolbar);
+		coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
 
 		setSupportActionBar(toolbar);
 
@@ -63,8 +71,6 @@ public class PopularMoviesActivity extends AppCompatActivity implements MoviesPo
 	{
 		super.onStart();
 
-		Log.d(POPULARMOVIESACTIVITYTAG, POPULARMOVIESACTIVITYTAG + " onStart()");
-
 		if(requestsCanceled)
 		{
 			loadMoviesByPreference(getPreferenceValue(getResources().getString(R.string.movies_order_by_shared_preferences_key)));
@@ -75,8 +81,6 @@ public class PopularMoviesActivity extends AppCompatActivity implements MoviesPo
 	protected void onResume()
 	{
 		super.onResume();
-
-		Log.d(POPULARMOVIESACTIVITYTAG, POPULARMOVIESACTIVITYTAG + " onResume()");
 	}
 
 	@Override
@@ -139,7 +143,7 @@ public class PopularMoviesActivity extends AppCompatActivity implements MoviesPo
 		MovieDTO movieDTO = moviesList.get(clickedItemIndex).clone();
 
 		Intent i = new Intent(this, MovieActivity.class);
-		i.putExtra(getResources().getString(R.string.parcelable_movie_intent_extra), movieDTO);
+		i.putExtra(MovieDTO.PARCELABLE_KEY, movieDTO);
 		startActivity(i);
 	}
 
@@ -165,9 +169,27 @@ public class PopularMoviesActivity extends AppCompatActivity implements MoviesPo
 			}
 		};
 
-		ApiServices<GetMoviesResponse> apiServices = new ApiServices<>();
-		apiServices.GetPopularMovies(successResponseRequestListener, errorResponseRequestListener,
-				  GetMoviesResponse.class, getApplicationContext(), POPULARMOVIESACTIVITYTAG);
+		if(NetworkUtils.isOnline(getApplicationContext()))
+		{
+			ApiServices<GetMoviesResponse> apiServices = new ApiServices<>();
+			apiServices.GetPopularMovies(successResponseRequestListener, errorResponseRequestListener,
+					  GetMoviesResponse.class, getApplicationContext(), POPULARMOVIESACTIVITYTAG);
+		}
+		else
+		{
+			snackbar = Snackbar.make(coordinatorLayout, getResources().getString(R.string.no_internet_connection),
+					  Snackbar.LENGTH_LONG)
+					  .setAction(getResources().getString(R.string.retry), new View.OnClickListener() {
+						  @Override
+						  public void onClick(View view) {
+							  snackbar.dismiss();
+							  loadPopularMoviesFromApi();
+						  }
+					  });
+
+			snackbar.setDuration(Snackbar.LENGTH_INDEFINITE);
+			snackbar.show();
+		}
 	}
 
 	public void loadTopRatedMoviesFromApi()
@@ -192,37 +214,28 @@ public class PopularMoviesActivity extends AppCompatActivity implements MoviesPo
 			}
 		};
 
-		ApiServices<GetMoviesResponse> apiServices = new ApiServices<>();
-		apiServices.GetTopRatedMovies(successResponseRequestListener, errorResponseRequestListener,
-				  GetMoviesResponse.class, getApplicationContext(), POPULARMOVIESACTIVITYTAG);
-	}
+		if(NetworkUtils.isOnline(getApplicationContext()))
+		{
+			ApiServices<GetMoviesResponse> apiServices = new ApiServices<>();
+			apiServices.GetTopRatedMovies(successResponseRequestListener, errorResponseRequestListener,
+					  GetMoviesResponse.class, getApplicationContext(), POPULARMOVIESACTIVITYTAG);
+		}
+		else
+		{
+			snackbar = Snackbar.make(coordinatorLayout, getResources().getString(R.string.no_internet_connection),
+					  Snackbar.LENGTH_LONG)
+					  .setAction(getResources().getString(R.string.retry), new View.OnClickListener() {
+						  @Override
+						  public void onClick(View view) {
+							  snackbar.dismiss();
+							  loadTopRatedMoviesFromApi();
+						  }
+					  });
 
-//	public void loadMovieDetails(long id)
-//	{
-//		final Response.Listener<MovieDTO> successResponseRequestListener = new Response.Listener<MovieDTO>()
-//		{
-//			@Override
-//			public void onResponse(MovieDTO response)
-//			{
-//				response.hashCode();
-//			}
-//		};
-//
-//		final Response.ErrorListener errorResponseRequestListener = new Response.ErrorListener()
-//		{
-//			@Override
-//			public void onErrorResponse(VolleyError error)
-//			{
-//				Log.e(POPULARMOVIESACTIVITYTAG, error.getLocalizedMessage());
-//			}
-//		};
-//
-//		Type type = new TypeToken<MovieDTO>(){}.getType();
-//
-//		ApiServices<MovieDTO> apiServices = new ApiServices<>();
-//		apiServices.GetMovieDetails(successResponseRequestListener, errorResponseRequestListener,
-//				  type, getApplicationContext(), POPULARMOVIESACTIVITYTAG, id);
-//	}
+			snackbar.setDuration(Snackbar.LENGTH_INDEFINITE);
+			snackbar.show();
+		}
+	}
 
 	@Override
 	public void onPreferenceChangedEvent(String preference)

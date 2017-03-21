@@ -22,7 +22,6 @@
     <string name="prefDefaultValue">@string/first_pref_list_entry</string>
     <string name="settings_menu">Settings</string>
     <string name="movie_detail">Movie Detail</string>
-    <string name="parcelable_movie_intent_extra">movie</string>
     <string name="movie_vote_average">%1$s/10</string>
     <string name="trailers_text_view">Trailers</string>
     <string name="reviews_text_view">User Reviews</string>
@@ -33,4 +32,6 @@
     <string name="favorites">Favorites</string>
     <string name="no_favorites_text">You don\'t have favorites</string>
     <string name="no_trailer_share">There is no trailer to share</string>
+    <string name="no_internet_connection">You don\'t have internet connection</string>
+    <string name="retry">RETRY</string>
 </resources>

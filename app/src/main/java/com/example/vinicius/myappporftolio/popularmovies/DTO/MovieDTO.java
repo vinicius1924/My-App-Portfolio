@@ -16,6 +16,7 @@ public class MovieDTO implements Parcelable, Cloneable
 	private long id;
 	private String original_title;
 	private double vote_average;
+	public static final String PARCELABLE_KEY = "movie";
 
 
 	public MovieDTO()

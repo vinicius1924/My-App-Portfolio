@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.vinicius.myappporftolio.popularmovies.MovieActivity">
@@ -159,30 +160,6 @@
                     android:text="@string/reviews_text_view"
                     android:textColor="@color/primary_text_color_light"
                     android:layout_marginTop="@dimen/toolbar_shadow_height"/>
-
-                <!--<LinearLayout-->
-                <!--android:id="@+id/linearLayoutUserReview"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:orientation="vertical"-->
-                <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
-                <!--android:paddingTop="@dimen/activity_horizontal_margin">-->
-                <!---->
-                <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:textColor="@color/primary_text_color_light"-->
-                <!--tools:text="Fulano"/>-->
-
-                <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="@dimen/trailer_divider_height"-->
-                <!--android:layout_marginBottom="@dimen/toolbar_shadow_height"-->
-                <!--android:textColor="@color/secondary_text_color_light"-->
-                <!--tools:text="This is my review\njdsjfhdjsfhdsj\nlaskdjaskljds"/>-->
-
-                <!--</LinearLayout>-->
 
                 <ProgressBar
                     android:id="@+id/progressBarReviews"

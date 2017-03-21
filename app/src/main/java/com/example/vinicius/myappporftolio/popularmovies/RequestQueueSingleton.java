@@ -75,9 +75,4 @@ public class RequestQueueSingleton
        */
       getRequestQueue().add(req);
    }
-   
-//   public ImageLoader getImageLoader()
-//   {
-//      return imageloader;
-//   }
 }

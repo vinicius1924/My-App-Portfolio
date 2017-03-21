@@ -5,6 +5,8 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,6 +34,7 @@ import com.example.vinicius.myappporftolio.popularmovies.database.MovieContract;
 import com.example.vinicius.myappporftolio.popularmovies.server.ApiServices;
 import com.example.vinicius.myappporftolio.popularmovies.server.GetReviewsResponse;
 import com.example.vinicius.myappporftolio.popularmovies.server.GetVideosResponse;
+import com.example.vinicius.myappporftolio.popularmovies.utils.NetworkUtils;
 import com.example.vinicius.myappporftolio.popularmovies.utils.VolleyUtils;
 import com.squareup.picasso.Picasso;
 
@@ -59,6 +62,8 @@ public class MovieActivity extends AppCompatActivity implements View.OnClickList
 	private LinearLayout linearLayoutReviews;
 	private List<String> youtubeTrailers = new ArrayList<String>();
 	private ShareActionProvider mShareActionProvider;
+	private Snackbar snackbar;
+	private CoordinatorLayout coordinatorLayout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -77,6 +82,7 @@ public class MovieActivity extends AppCompatActivity implements View.OnClickList
 		progressBarTrailers = (ProgressBar) findViewById(R.id.progressBarTrailers);
 		progressBarReviews = (ProgressBar) findViewById(R.id.progressBarReviews);
 		favoriteButton = (ImageButton) findViewById(R.id.favoriteButton);
+		coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
 
 		favoriteButton.setOnClickListener(this);
 
@@ -87,7 +93,7 @@ public class MovieActivity extends AppCompatActivity implements View.OnClickList
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		Bundle bundle = getIntent().getExtras();
-		movieDTO = bundle.getParcelable(getResources().getString(R.string.parcelable_movie_intent_extra));
+		movieDTO = bundle.getParcelable(MovieDTO.PARCELABLE_KEY);
 
 		movieTitle.setText(movieDTO.getOriginalTitle());
 		Picasso.with(this).load(movieDTO.getPoster()).into(moviePoster);
@@ -277,9 +283,32 @@ public class MovieActivity extends AppCompatActivity implements View.OnClickList
 			}
 		};
 
-		ApiServices<GetVideosResponse> apiServices = new ApiServices<>();
-		apiServices.GetMovieVideos(successResponseRequestListener, errorResponseRequestListener,
-				  GetVideosResponse.class, getApplicationContext(), TRAILERSREQUESTTAG, id);
+		if(NetworkUtils.isOnline(getApplicationContext()))
+		{
+			ApiServices<GetVideosResponse> apiServices = new ApiServices<>();
+			apiServices.GetMovieVideos(successResponseRequestListener, errorResponseRequestListener,
+					  GetVideosResponse.class, getApplicationContext(), TRAILERSREQUESTTAG, id);
+		}
+		else
+		{
+			snackbar = Snackbar.make(coordinatorLayout, getResources().getString(R.string.no_internet_connection),
+					  Snackbar.LENGTH_LONG)
+					  .setAction(getResources().getString(R.string.retry), new View.OnClickListener() {
+						  @Override
+						  public void onClick(View view) {
+							  snackbar.dismiss();
+							  loadMovieTrailers(movieDTO.getId());
+
+							  if(progressBarReviews.getVisibility() == View.VISIBLE)
+							  {
+								  loadMovieReviews(movieDTO.getId());
+							  }
+						  }
+					  });
+
+			snackbar.setDuration(Snackbar.LENGTH_INDEFINITE);
+			snackbar.show();
+		}
 	}
 
 	public void loadMovieReviews(long id)
@@ -340,9 +369,33 @@ public class MovieActivity extends AppCompatActivity implements View.OnClickList
 			}
 		};
 
-		ApiServices<GetReviewsResponse> apiServices = new ApiServices<>();
-		apiServices.GetMovieReviews(successResponseRequestListener, errorResponseRequestListener,
-				  GetReviewsResponse.class, getApplicationContext(), REVIEWSREQUESTTAG, id);
+
+		if(NetworkUtils.isOnline(getApplicationContext()))
+		{
+			ApiServices<GetReviewsResponse> apiServices = new ApiServices<>();
+			apiServices.GetMovieReviews(successResponseRequestListener, errorResponseRequestListener,
+					  GetReviewsResponse.class, getApplicationContext(), REVIEWSREQUESTTAG, id);
+		}
+		else
+		{
+			snackbar = Snackbar.make(coordinatorLayout, getResources().getString(R.string.no_internet_connection),
+					  Snackbar.LENGTH_LONG)
+					  .setAction(getResources().getString(R.string.retry), new View.OnClickListener() {
+						  @Override
+						  public void onClick(View view) {
+							  snackbar.dismiss();
+							  loadMovieReviews(movieDTO.getId());
+
+							  if(progressBarTrailers.getVisibility() == View.VISIBLE)
+							  {
+								  loadMovieTrailers(movieDTO.getId());
+							  }
+						  }
+					  });
+
+			snackbar.setDuration(Snackbar.LENGTH_INDEFINITE);
+			snackbar.show();
+		}
 	}
 
 	@Override
@@ -411,8 +464,5 @@ public class MovieActivity extends AppCompatActivity implements View.OnClickList
 		movieValues.put(MovieContract.MovieEntry.COLUMN_TITLE, movieDTO.getOriginalTitle());
 
 		Uri insertedUri = resolver.insert(MovieContract.MovieEntry.CONTENT_URI, movieValues);
-
-		// The resulting URI contains the ID for the row. Extract the id from the Uri.
-		//long movieId = ContentUris.parseId(insertedUri);
 	}
 }
