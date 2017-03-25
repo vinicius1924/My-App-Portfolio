@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.vinicius.myappporftolio.popularmovies.PopularMoviesActivity;
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
 {
 	private Button popularMoviesButton;
@@ -53,8 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		switch(view.getId())
 		{
 			case R.id.popularMoviesButton:
-				Intent intent = new Intent(this, PopularMoviesActivity.class);
-				startActivity(intent);
+				showToast(getResources().getString(R.string.popular_movies_button_toast));
 				break;
 			case R.id.stockHawkButton:
 				showToast(getResources().getString(R.string.stock_hawk_button_toast));

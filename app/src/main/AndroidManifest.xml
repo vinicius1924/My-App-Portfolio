@@ -2,9 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.vinicius.myappporftolio">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,29 +15,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".popularmovies.PopularMoviesActivity"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity">
-            </meta-data>
-        </activity>
-        <activity
-            android:name=".popularmovies.MovieActivity"
-            android:parentActivityName=".popularmovies.PopularMoviesActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".popularmovies.PopularMoviesActivity">
-            </meta-data>
-        </activity>
-
-        <provider
-            android:name=".popularmovies.database.MovieProvider"
-            android:authorities="com.example.vinicius.myappportfolio"/>
-
-        <activity android:name=".popularmovies.FavoritesActivity">
         </activity>
     </application>
 

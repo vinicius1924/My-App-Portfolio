@@ -11,7 +11,6 @@
         <item name="colorAccent">@color/pink_A200</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <!--<item name="buttonStyle">@style/Widget.AppCompat.Button.Colored</item>-->
         <item name="colorButtonNormal">@color/button_normal</item>
     </style>
 
